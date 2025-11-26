@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carta Origo Madrid | Cocina ecuatoriana & colombiana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --color-primario: #f4b000;
+      --color-secundario: #1e0b2e;
+      --color-fondo: #05030a;
+      --color-texto: #fdfdfd;
+      --shadow: 0 14px 35px rgba(0, 0, 0, 0.6);
+      --transition: 0.25s ease-out;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #20123d, #05030a);
+      color: var(--color-texto);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* HEADER SIMPLE */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(5, 3, 10, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo h1 {
+      font-size: 1.1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.8rem 1.25rem 2.8rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 1.3rem;
+    }
+
+    /* CONTENEDOR CARTA */
+    .menu-wrapper {
+      background: radial-gradient(circle at top left, #f4b00012, #090714);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 1.2rem 1.2rem 1.3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      font-size: 0.86rem;
+      margin-bottom: 1rem;
+    }
+
+    .menu-tabs {
+      display: inline-flex;
+      gap: 0.4rem;
+      background: rgba(5, 3, 10, 0.95);
+      padding: 0.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .menu-tab {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: rgba(255,255,255,0.45); /* inactivo visible */
+      transition: color var(--transition), transform var(--transition), opacity var(--transition);
+    }
+
+    .menu-tab:hover {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .menu-tab.active {
+      background: linear-gradient(135deg, var(--color-primario), #ffd166);
+      color: #1a1a1a;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.75);
+    }
+
+    .menu-list {
+      display: none;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .menu-list.active {
+      display: flex;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.6rem 0.2rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+
+    .menu-item h4 {
+      font-size: 0.96rem;
+    }
+
+    .menu-item p {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .menu-price {
+      font-size: 0.94rem;
+      white-space: nowrap;
+      opacity: 0.95;
+      margin-left: 0.5rem;
+    }
+
+    footer {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2rem;
+      font-size: 0.8rem;
+      opacity: 0.75;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .menu-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu-price {
+        margin-top: 0.25rem;
+      }
+      
+    }
+  /* cuando el móvil está horizontal */
+@media (orientation: landscape) {
+  main {
+    max-width: 1000px;   /* aumentamos ancho */
+    padding: 2rem;
+  }
+
+  .menu-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    transform: scale(1.02);
+  }
+
+  .menu-item h4 {
+    font-size: 1.05rem;
+  }
+
+  .menu-price {
+    font-size: 1.05rem;
+  }
+}
+
+/* si además la pantalla es MUY ancha */
+@media (orientation: landscape) and (min-width: 1000px) {
+  main,
+  .menu-wrapper {
+    max-width: 1200px;
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <h1>ORIGO MADRID</h1>
+        <span>Cocina ecuatoriana & colombiana</span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Carta Origo Madrid</h2>
+    <p class="subtitle">
+      Ceviches, tapas, platos principales y postres con raíces ecuatorianas y colombianas.
+    </p>
+
+    <div class="menu-wrapper">
+      <div class="menu-header">
+        <div>
+          <strong>Carta digital</strong>
+          <p style="margin-top:0.2rem; font-size:0.8rem; opacity:0.85;">
+            Escanea el código QR o abre este enlace para ver siempre la carta actualizada.
+          </p>
+        </div>
+        <div class="menu-tabs">
+          <button class="menu-tab active" data-target="menu-ceviches">Ceviches</button>
+          <button class="menu-tab" data-target="menu-tapas">Tapas</button>
+          <button class="menu-tab" data-target="menu-principales">Platos principales</button>
+          <button class="menu-tab" data-target="menu-postres">Postres</button>
+        </div>
+      </div>
+
+      <!-- CEVICHES -->
+      <div class="menu-list active" id="menu-ceviches">
+        <div class="menu-item">
+          <div>
+            <h4>Ceviche de corvina salvaje</h4>
+            <p>Corvina fresca marinada en cítricos naturales, cebolla morada y cilantro.</p>
+          </div>
+          <div class="menu-price">16,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Ceviche de langostinos</h4>
+            <p>Langostinos marinados en cítricos frescos con cebolla morada y cilantro.</p>
+          </div>
+          <div class="menu-price">16,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Ceviche Origo</h4>
+            <p>Selección del mar: corvina, langostinos y pulpo marinados en cítricos naturales con cebolla morada y cilantro.</p>
+          </div>
+          <div class="menu-price">19,50 €</div>
+        </div>
+      </div>
+
+      <!-- TAPAS -->
+      <div class="menu-list" id="menu-tapas">
+        <div class="menu-item">
+          <div>
+            <h4>Empanadas colombianas</h4>
+            <p>Masa de maíz dorada y crujiente, rellena de carne jugosa y papa.</p>
+          </div>
+          <div class="menu-price">2,80 € / ud</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Chorizo santarrosano con arepa</h4>
+            <p>Chorizo típico de Santander ligeramente ahumado con arepa.</p>
+          </div>
+          <div class="menu-price">6,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Papa criolla choreada</h4>
+            <p>Papas criollas con hogao tradicional colombiano de tomate y cebolla.</p>
+          </div>
+          <div class="menu-price">8,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Patacones (carne mechada)</h4>
+            <p>Patacones de plátano verde cubiertos con carne mechada al estilo caribeño colombiano.</p>
+          </div>
+          <div class="menu-price">12,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Patacones (queso fresco)</h4>
+            <p>Patacones de plátano verde cubiertos con queso fresco.</p>
+          </div>
+          <div class="menu-price">10,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Arepa de chocolo con queso</h4>
+            <p>Arepa de maíz dulce a la sartén con mantequilla y queso fresco.</p>
+          </div>
+          <div class="menu-price">10,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Muchín de yuca con queso</h4>
+            <p>Delicia ecuatoriana hecha de yuca rallada y queso fresco, ligeramente frita.</p>
+          </div>
+          <div class="menu-price">4,50 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Pika pollo</h4>
+            <p>Contramuslo de pollo troceado y frito, crujiente y jugoso, sazonado con nuestra selección de especias.</p>
+          </div>
+          <div class="menu-price">12,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Langostinos reventados (4 uds)</h4>
+            <p>Langostinos empanados y fritos al estilo costeño, servidos con plátano maduro.</p>
+          </div>
+          <div class="menu-price">10,50 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Corviche de pescado</h4>
+            <p>Delicia manabita elaborada con plátano verde rallado, maní y pescado fresco frito.</p>
+          </div>
+          <div class="menu-price">4,50 €</div>
+        </div>
+      </div>
+
+      <!-- PLATOS PRINCIPALES -->
+      <div class="menu-list" id="menu-principales">
+        <div class="menu-item">
+          <div>
+            <h4>Frijolada montañera</h4>
+            <p>Frijoles rojos con arroz blanco, chicharrón crujiente, chorizo, huevo frito, aguacate maduro y arepa.</p>
+          </div>
+          <div class="menu-price">18,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Encebollado de pescado</h4>
+            <p>Sopa tradicional ecuatoriana con pescado fresco y yuca tierna, con cebolla morada encurtida, cilantro y un toque cítrico.</p>
+          </div>
+          <div class="menu-price">13,50 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Cazuela de verde al horno</h4>
+            <p>Receta de plátano verde horneado con carne y pescado fresco, servida con arroz.</p>
+          </div>
+          <div class="menu-price">16,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Seco de gallina criolla campesina</h4>
+            <p>Gallina campera cocinada en salsa de lulo y cerveza artesanal, acompañada de arroz blanco, maduro frito, aguacate y ensalada.</p>
+          </div>
+          <div class="menu-price">16,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Guatita</h4>
+            <p>Cazuela de mondongo en salsa de cacahuate, con arroz blanco y papas.</p>
+          </div>
+          <div class="menu-price">16,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Acompañamiento adicional: arroz blanco</h4>
+            <p>Ración extra de arroz blanco.</p>
+          </div>
+          <div class="menu-price">3,00 €</div>
+        </div>
+      </div>
+
+      <!-- POSTRES -->
+      <div class="menu-list" id="menu-postres">
+        <div class="menu-item">
+          <div>
+            <h4>Tarta de chocolate 100% ecuatoriano</h4>
+            <p>Hecha con cacao ecuatoriano y harina de almendra 100% con helado artesanal de maracuyá.</p>
+          </div>
+          <div class="menu-price">6,00 €</div>
+        </div>
+
+        <div class="menu-item">
+          <div>
+            <h4>Dulce de tomate de árbol con queso</h4>
+          <p>Postre artesanal ecuatoriano de dulce de tomate de árbol acompañado de queso fresco.</p>
+          </div>
+          <div class="menu-price">6,00 €</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Origo Madrid · Carta digital
+  </footer>
+
+  <script>
+    // Año automático
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Tabs carta
+    const tabs = document.querySelectorAll(".menu-tab");
+    const lists = document.querySelectorAll(".menu-list");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        lists.forEach(l => l.classList.remove("active"));
+
+        tab.classList.add("active");
+        const target = document.getElementById(tab.dataset.target);
+        if (target) target.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
