@@ -1,2 +1,0 @@
-# OrigoMadrid
-Restaurante Ecuatoriano Colombiano
